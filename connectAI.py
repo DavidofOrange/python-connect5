@@ -211,6 +211,8 @@ game_over = False
 
 pygame.init()
 
+
+
 SQUARESIZE = 100
 
 width = COLUMN_COUNT * SQUARESIZE
@@ -230,7 +232,7 @@ turn = random.randint(PLAYER, AI)
 
 # Background music
 mixer.music.load('music.mp3')
-mixer.music.set_volume(0.1)
+mixer.music.set_volume(0.09)
 mixer.music.play(-1)
 
 while not game_over:
@@ -248,6 +250,7 @@ while not game_over:
 		pygame.display.update()
 
 		if event.type == pygame.MOUSEBUTTONDOWN:
+			
 			pygame.draw.rect(screen, BLACK, (0,0, width, SQUARESIZE))
 			#print(event.pos)
 			# Ask for Player 1 Input
@@ -264,11 +267,13 @@ while not game_over:
 						screen.blit(label, (40,10))
 						game_over = True
 
+
 					turn += 1
 					turn = turn % 2
 
 					print_board(board)
 					draw_board(board)
+					
 
 
 			# # Ask for Player 2 Input
@@ -279,22 +284,27 @@ while not game_over:
 		if is_valid_location(board, col):
 			#pygame.time.wait(500)
 			row = get_next_open_row(board, col)
+			
 			drop_piece(board, row, col, AI_PIECE)
 
 			if winning_move(board, AI_PIECE):
 				label = myfont.render("Player 2 wins!!", 1, YELLOW)
 				screen.blit(label, (40,10))
 				game_over = True
+			
 
-			print_board(board)
-			draw_board(board)
 
-			bubble_Sound = mixer.Sound('bubble.mp3')
-			bubble_Sound.play()
+				print_board(board)
+				draw_board(board)
+				
+				
 
 			turn += 1
 			turn = turn % 2
 
+			bubble_Sound = mixer.Sound('bubble.mp3')
+			bubble_Sound.play()
+			
 			if game_over:
 				mixer.music.stop()
 				win_theme = mixer.Sound('win.mp3')
