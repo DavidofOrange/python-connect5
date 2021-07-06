@@ -3,7 +3,7 @@ import pygame
 import sys
 import math
 from pygame import mixer
-import connectfour as nextgame
+import connectfive as nextgame2
 
 BLUE = (51,153,255)
 BLACK = (0,0,0)
@@ -95,7 +95,7 @@ myfont = pygame.font.SysFont("constantia", 75)
 
 # Background music
 mixer.music.load('music.mp3')
-mixer.music.set_volume(0.1)
+mixer.music.set_volume(0.09)
 mixer.music.play(-1)
 
 while not game_over:
@@ -159,5 +159,5 @@ while not game_over:
                 win_theme = mixer.Sound('win.mp3')
                 win_theme.set_volume(0.1)
                 win_theme.play()
-                nextgame
+                nextgame2
                 pygame.time.wait(5000)
